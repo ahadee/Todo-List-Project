@@ -86,7 +86,16 @@ let searchList = list => {
         }
     })
 
-    console.log(result);
+    // console.log(result);
+
+    let getParent = document.getElementsByTagName('section')[0]
+    let createElementLi = document.createElement('li')
+    let createElementUl = document.createElement('ul')
+    let resultSearch = document.createTextNode(result)
+
+    createElementLi.appendChild(resultSearch)
+    createElementUl.appendChild(createElementLi)
+    getParent.appendChild(createElementUl)
 
 
 }
