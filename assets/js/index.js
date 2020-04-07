@@ -20,7 +20,7 @@ let addList = (event) => {
     event.preventDefault()
     let input = document.getElementById('inlineFormInputName2').value
     let createList = document.createElement('li');
-    createList.setAttribute('onclick', 'editList(event)');
+    createList.setAttribute('ondblclick', 'editList(event)');
     createList.setAttribute('id', 'listEdit')
     const text = document.createTextNode(input);
     createList.appendChild(text);
