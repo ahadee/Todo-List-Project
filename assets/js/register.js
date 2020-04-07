@@ -23,6 +23,7 @@ const userRegistration = (event) => {
         if(userCek == null){
             userDataAll.push(userData) ;
             localStorage.setItem("userData", JSON.stringify(userDataAll));
+            window.location.href = `${window.origin}/login.html` 
         }
         else{
             for(let i = 0 ; i<userCek.length ; i++){

@@ -16,6 +16,10 @@ let saveData = list => {
 
 
 let addList = (event) => {
+    // callStorage()
+    let currentList = callStorage()
+    // console.log(currentList);
+
 
     event.preventDefault()
     let input = document.getElementById('inlineFormInputName2').value
@@ -35,9 +39,9 @@ let addList = (event) => {
     deleteList.setAttribute('id', 'listDelete');
     listTodos.appendChild(createList)
     // console.log(createList);
-    
-    saveData(createList.innerText)
-
+    currentList.push(input)
+    console.log(currentList);
+    saveData(currentList)
     // let spanAttribute = document.querySelector(`span`)
     // spanAttribute.setAttribute('span',`untukX`)
     // deleting
@@ -50,8 +54,8 @@ let deleteListt = (event) => {
     let deleting = document.getElementById('listDelete')
     let deletingResult = document.querySelector('li')
     deletingResult.remove(deleting);
-    console.log(deletingResult);
-    
+    // console.log(deletingResult);
+
 }
 
 let editList = (event) => {
@@ -72,16 +76,23 @@ let editList = (event) => {
 
 let searchList = list => {
     event.preventDefault()
-    let userData = JSON.parse(localStorage.getItem('dbList'))
-    let input = document.getElementById('inlineFormInputName2').value
+    let todoList = JSON.parse(localStorage.getItem('dbList'))
+    let input = document.getElementById('inlineFormInputName1').value
+    // let result = []
 
-    if (input == userData) {
+    let result = todoList.filter(item => {
+        if (item.includes(input)) {
+            return item
+        }
+    })
 
-    }
+    console.log(result);
+
+
 }
 
 function logout() {
-    localStorage.clear();
+    // localStorage.clear();
     window.location.href = 'register.html'
 }
 
