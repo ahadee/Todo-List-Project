@@ -76,7 +76,7 @@ let deleteListt = (event) => {
 let editList = (event) => {
     
     event.preventDefault();
-    const textTampil = prompt("Masukan to-do baru");
+    const textTampil = prompt("Masukan to-do baru anda");
     const textEdit = event.target.id.replace("edit-", "");
 
     const todos = callStorage()
