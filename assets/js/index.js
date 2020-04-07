@@ -70,14 +70,12 @@ let editList = (event) => {
 
 }
 
-let searchList = (event) => {
+let searchList = list => {
     event.preventDefault()
     let input = document.getElementById('inlineFormInputName2').value
 
     // if (input == )
 }
-
-
 
 let button = document.getElementById('submitForm')
 button.addEventListener('onclick', addList)
