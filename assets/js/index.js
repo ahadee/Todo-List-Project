@@ -1,114 +1,99 @@
-// let result = []
-let callStorage = () => {
-    //Mengakses local storage, apabila tidak ada data sebelumnya, mengembalikan array kosong
-    if (localStorage.getItem(`dbList`) === null) {
-        return []
-
-        //Apabila sudah ada data pada local storage, mengembalikan array berisi data tersebut
-    } else {
-        return JSON.parse(localStorage.getItem(`dbList`))
+const buttonAdd = document.getElementById("submitForm")
+const buttonSearch = document.getElementById("searchList")
+const addList = (event)=>{
+    event.preventDefault();
+    let addBarang = document.getElementById("inlineFormInputName2").value;
+    let todos = get();
+    if(addBarang){
+        todos.push(addBarang);
+        save(todos);
+        tampilkanBarang();
+    }
+    else{
+        alert("Inputan tidak boleh kosong")
     }
 }
 
-let saveData = list => {
-    localStorage.setItem(`dbList`, JSON.stringify(list))
+let get = () =>{
+    if(localStorage.todos){
+        return JSON.parse(localStorage.todos);
+    }
+    else{
+        localStorage.todos = "[]";
+        return [];
+    }
+}
+let save = (barang) =>{
+    localStorage.todos = JSON.stringify(barang)
 }
 
-
-let addList = (event) => {
-    // callStorage()
-    let currentList = callStorage()
-    // console.log(currentList);
-
-
-    event.preventDefault()
-    let input = document.getElementById('inlineFormInputName2').value
-    let createList = document.createElement('li');
-    createList.setAttribute('onclick', 'editList(event)');
-    createList.setAttribute('id', 'listEdit')
-    const text = document.createTextNode(input);
-    createList.appendChild(text);
-    let listTodos = document.getElementById('list-todos')
-    // console.log(createList);
-    let deleteList = document.createElement('span')
-    let textDelete = document.createTextNode('X')
-    deleteList.appendChild(textDelete)
-    createList.appendChild(deleteList);
-    // deleteList.classList.add('idSpan')
-    deleteList.setAttribute('onclick', 'deleteListt(event)');
-    deleteList.setAttribute('id', 'listDelete');
-    listTodos.appendChild(createList)
-    // console.log(createList);
-    currentList.push(input)
-    console.log(currentList);
-    saveData(currentList)
-    // let spanAttribute = document.querySelector(`span`)
-    // spanAttribute.setAttribute('span',`untukX`)
-    // deleting
-
-
+let tampilkanBarang = (barang = get())=>{
+    let tampil = document.getElementById("list-todos");
+    if(barang.length!=0){
+        tampil.innerHTML = "";
+        for(let i = 1 ; i<barang.length ; i++){
+            tampil.innerHTML += `<li class ="">
+            <span id = barang-${i}>${barang[i]}</span>
+            <button id = hapus-${i} class="btn btn-outline-dark btn-sm" aria-hidden="true" aria-hidden="true" onclick = "hapusButton(this)" >hapus</button>
+            <button id = edit-${i} class="btn btn-outline-dark btn-sm" aria-hidden="true"  onclick = "editButton(this)">edit</button> 
+            </li>`
+        }
+    }
 }
 
-let deleteListt = (event) => {
+let tampilkanSearch = (barang = get())=>{
+    let tampil = document.getElementById("list-todos");
+    if(barang.length!=0){
+        tampil.innerHTML = "";
+        for(let i = 0 ; i<barang.length ; i++){
+            tampil.innerHTML += `<li class ="d-flex justify-content-between">
+            <span id = barang-${i}>${barang[i]}</span> 
+
+            </li> `
+        }
+    }
+}
+const hapusButton = (posisi)=>{
+    let todos = get();
+    let id = posisi.id.replace("hapus-", "");
+    todos.splice(id,1);
+    save(todos);
+    tampilkanBarang();
+}
+
+const editButton = (posisi)=>{
+    let todos = get();
+    let id = posisi.id.replace("edit-", "")
+    const ubah = prompt(`ubah ${todos[id]}`)
+    if(ubah){
+        todos[id] = ubah ;
+        save(todos);
+        tampilkanBarang();
+    }
+    else{
+        alert("Edit Belum di lakukan")
+        tampilkanBarang();
+    }
+    
+}
+const searchList = (event)=>{
     event.preventDefault();
-    let deleting = document.getElementById('listDelete')
-    let deletingResult = document.querySelector('li')
-    deletingResult.remove(deleting);
-    // console.log(deletingResult);
-
+    let todos = get();
+    let textSearch = document.getElementById("inlineFormInputName1").value.toLowerCase();
+    let result = todos.filter(item=>{
+        if(item.includes(textSearch)){
+            return item;
+        }
+    })
+    if (result.length!=0){
+        tampilkanSearch(result);
+        
+        
+    }
+    else{
+        alert("Barang Tidak Di Temukan")
+    }
+    
 }
-
-let editList = (event) => {
-    event.preventDefault();
-    let textEdit = prompt("Masukan Kata ang Ingin Di ubah");
-    let li = document.querySelector('li');
-    li.innerHTML = textEdit;
-    // let deleteList = document.createElement('span')
-    // let textDelete = document.createTextNode('X')
-    // deleteList.appendChild(textDelete)
-    // createList.appendChild(deleteList);
-    // // deleteList.classList.add('idSpan')
-    // deleteList.setAttribute('onclick', 'deleteListt(event)');
-    // deleteList.setAttribute('id', 'listDelete');
-    // listTodos.appendChild(createList)
-
-}
-
-// let searchList = list => {
-//     event.preventDefault()
-//     let todoList = JSON.parse(localStorage.getItem('dbList'))
-//     let input = document.getElementById('inlineFormInputName1').value
-//     // let result = []
-
-//     let result = todoList.filter(item => {
-//         if (item.includes(input)) {
-//             return item
-//         }
-//     })
-
-//     // console.log(result);
-
-//     let getParent = document.getElementsByTagName('section')[0]
-//     let createElementLi = document.createElement('li')
-//     let createElementUl = document.createElement('ul')
-//     let resultSearch = document.createTextNode(result)
-
-//     createElementLi.appendChild(resultSearch)
-//     createElementUl.appendChild(createElementLi)
-//     getParent.appendChild(createElementUl)
-
-
-// }
-
-function logout() {
-    // localStorage.clear();
-    window.location.href = 'register.html'
-}
-
-let button = document.getElementById('submitForm')
-button.addEventListener('click', addList)
-
-// let span = document.
-
-
-
+buttonAdd.addEventListener('click', addList);
+buttonSearch.addEventListener('click', searchList)
