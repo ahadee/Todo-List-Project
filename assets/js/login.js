@@ -1,20 +1,26 @@
-const loginForm = document.getElementById("loginForm")
+const loginForm = document.getElementById("loginForm");
 
-const userLogin = (event) => {
-    event.preventDefault()
+const userLogin = (event)=>{
+    event.preventDefault();
+    let userData = JSON.parse(localStorage.getItem('userData'))
+    const emailInput = document.getElementById("email").value;
+    const passwordInput = document.getElementById("password").value;
+    count = 0;
+    
+    
 
-    const {email, password} = JSON.parse(localStorage.getItem("tabel user"))
-    const emailInput = document.getElementById('email').value
-    const passwordInput = document.getElementById('password').value
-    // const name = document.getElementById('name').value
-
-    if (emailInput === email && password === passwordInput ) {
-        alert("Anda berhasil login")
-        window.location.href = `${window.origin}/index.html`
+    for(let i = 0 ; i<userData.length ; i++){
+        if(emailInput === userData[i].email && passwordInput === userData[i].password){
+            count =+ 1;
+            alert("berhasil Login");
+            window.location.href = `${window.origin}/index.html`;
+            break;
+        }
     }
-    else {
-        alert ('email atau password salah')
+    
+    if(count ==0){
+        alert("email atau Password salah")
     }
+
 }
-
-loginForm.addEventListener("submit", userLogin)
+loginForm.addEventListener("submit", userLogin);

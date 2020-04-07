@@ -1,0 +1,11 @@
+nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+nav ul li {
+  list-style: none;
+  padding: 0 20px;
+}
+/*# sourceMappingURL=register.css.map */
