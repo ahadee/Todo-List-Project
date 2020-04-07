@@ -13,8 +13,8 @@ const userRegistration = (event) => {
     }
     else {
         const userData = {
-            email: emailInput,
-            nama: namaInput,
+            email : emailInput, 
+            nama : namaInput, 
             password: passwordInput
         };
         userDataAll = localStorage.getItem('userData') === null ? [] : JSON.parse(localStorage.getItem('userData'));
