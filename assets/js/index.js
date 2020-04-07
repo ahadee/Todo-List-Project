@@ -72,13 +72,21 @@ let editList = (event) => {
 
 let searchList = list => {
     event.preventDefault()
+    let userData = JSON.parse(localStorage.getItem('dbList'))
     let input = document.getElementById('inlineFormInputName2').value
 
-    // if (input == )
+    if (input == userData) {
+
+    }
+}
+
+function logout() {
+    localStorage.clear();
+    window.location.href = 'register.html'
 }
 
 let button = document.getElementById('submitForm')
-button.addEventListener('onclick', addList)
+button.addEventListener('click', addList)
 
 // let span = document.
 
