@@ -13,7 +13,7 @@ const userRegistration = (event) => {
     }
     else{
         const userData = {
-            email : emailInput,
+            email : emailInput, 
             nama : namaInput, 
             password: passwordInput
         };
