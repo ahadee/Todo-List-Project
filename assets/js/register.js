@@ -37,10 +37,7 @@ const userRegistration = (event) => {
                 localStorage.setItem("userData", JSON.stringify(userDataAll));
                 window.location.href = `${window.origin}/login.html` ;
             }
-        }
-       
-        
-       
+        }   
     }
 }
 
