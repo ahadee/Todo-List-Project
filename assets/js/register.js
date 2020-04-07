@@ -8,7 +8,7 @@ const userRegistration = (event) => {
     var emailInput = document.getElementById("email").value;
     var namaInput = document.getElementById("nama").value;
     var passwordInput = document.getElementById("password").value;
-    if(email === "" && nama ==="" && password ===""){
+    if(emailInput === "" && namaInput ==="" && passwordInput ===""){
         alert("form tidak bisa kosong")
     }
     else{

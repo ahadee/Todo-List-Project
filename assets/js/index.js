@@ -74,31 +74,31 @@ let editList = (event) => {
 
 }
 
-let searchList = list => {
-    event.preventDefault()
-    let todoList = JSON.parse(localStorage.getItem('dbList'))
-    let input = document.getElementById('inlineFormInputName1').value
-    // let result = []
+// let searchList = list => {
+//     event.preventDefault()
+//     let todoList = JSON.parse(localStorage.getItem('dbList'))
+//     let input = document.getElementById('inlineFormInputName1').value
+//     // let result = []
 
-    let result = todoList.filter(item => {
-        if (item.includes(input)) {
-            return item
-        }
-    })
+//     let result = todoList.filter(item => {
+//         if (item.includes(input)) {
+//             return item
+//         }
+//     })
 
-    // console.log(result);
+//     // console.log(result);
 
-    let getParent = document.getElementsByTagName('section')[0]
-    let createElementLi = document.createElement('li')
-    let createElementUl = document.createElement('ul')
-    let resultSearch = document.createTextNode(result)
+//     let getParent = document.getElementsByTagName('section')[0]
+//     let createElementLi = document.createElement('li')
+//     let createElementUl = document.createElement('ul')
+//     let resultSearch = document.createTextNode(result)
 
-    createElementLi.appendChild(resultSearch)
-    createElementUl.appendChild(createElementLi)
-    getParent.appendChild(createElementUl)
+//     createElementLi.appendChild(resultSearch)
+//     createElementUl.appendChild(createElementLi)
+//     getParent.appendChild(createElementUl)
 
 
-}
+// }
 
 function logout() {
     // localStorage.clear();
