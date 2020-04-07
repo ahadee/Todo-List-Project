@@ -23,7 +23,7 @@ const userRegistration = (event) => {
         if(userCek == null){
             userDataAll.push(userData) ;
             localStorage.setItem("userData", JSON.stringify(userDataAll));
-            window.location.href = `${window.origin}/login.html` 
+            window.location.href = `${window.origin}/index.html` 
         }
         else{
             for(let i = 0 ; i<userCek.length ; i++){
@@ -36,7 +36,7 @@ const userRegistration = (event) => {
             if(count==0){
                 userDataAll.push(userData) ;
                 localStorage.setItem("userData", JSON.stringify(userDataAll));
-                window.location.href = `${window.origin}/login.html` ;
+                window.location.href = `${window.origin}/index.html` ;
             }
         }   
     }

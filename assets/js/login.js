@@ -15,7 +15,7 @@ const userLogin = (event)=>{
             if(emailInput === userData[i].email && passwordInput === userData[i].password){
                 count =+ 1;
                 alert("berhasil Login");
-                window.location.href = `${window.origin}/index.html`;
+                window.location.href = `${window.origin}/dashboard.html`;
                 break;
             }
         }
