@@ -31,13 +31,17 @@ let tampilkanBarang = (barang = get()) => {
     let tampil = document.getElementById("list-todos");
     if (barang.length != 0) {
         tampil.innerHTML = "";
-        for (let i = 1; i < barang.length; i++) {
+        for (let i = 0; i < barang.length; i++) {
             tampil.innerHTML += `<li class ="">
             <span id = barang-${i}>${barang[i]}</span>
             <button id = hapus-${i} class="btn btn-outline-dark btn-sm" aria-hidden="true" aria-hidden="true" onclick = "hapusButton(this)" >hapus</button>
             <button id = edit-${i} class="btn btn-outline-dark btn-sm" aria-hidden="true"  onclick = "editButton(this)">edit</button> 
             </li>`
         }
+    }
+    else {
+        alert('Semua Item telah dihapus')
+        tampil.innerHTML = "";
     }
 }
 
@@ -100,5 +104,10 @@ const searchList = (event) => {
     }
 
 }
+
+const logout = () =>{
+    window.location.href = 'index.html'
+}
+
 buttonAdd.addEventListener('click', addList);
 buttonSearch.addEventListener('click', searchList)
